@@ -1,0 +1,154 @@
+
+<form #myform="ngForm" (ngSubmit)="createEmployee()" class="container">
+  <div class="form-group row mb-3">
+    <label for="ename" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        id="ename"
+        [(ngModel)]="employee.ename"
+        name="ename"
+        #ename="ngModel"
+        class="form-control"
+        required
+      />
+    </div>
+  </div>
+  <span
+    *ngIf="ename.invalid && ename.touched"
+    class="error-form-control-feedback"
+    >Enter valid ename</span
+  >
+
+  <pre>
+            Valid? {{ ename.valid }}
+            Invalid? {{ ename.invalid }}
+            Touched? {{ ename.touched }}
+            Untouched?{{ ename.untouched }}
+            Dirty?{{ ename.dirty }}
+            Pristine?{{ ename.pristine }}
+      </pre
+  >
+
+  <div class="form-group row mb-3">
+    <label for="email" class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-10">
+      <input
+        type="email"
+        id="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [(ngModel)]="employee.email"
+        name="email"
+        #email="ngModel"
+        class="form-control"
+        required
+      />
+    </div>
+  </div>
+  <span
+    *ngIf="email.invalid && email.touched"
+    class="error-form-control-feedback"
+    >Enter valid email</span
+  >
+  <div class="form-group row mb-3">
+    <label for="password" class="col-sm-2 col-form-label">Password:</label>
+    <div class="col-sm-10">
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="employee.password"
+        name="password"
+        pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20})"
+        #password="ngModel"
+        class="form-control"
+        required
+      />
+    </div>
+  </div>
+  <span
+    *ngIf="password.invalid && password.touched"
+    class="error-form-control-feedback"
+    >Enter valid Password</span
+  >
+  <div class="form-group row mb-3">
+    <label for="gender" class="col-sm-2 col-form-label">Gender:</label>
+    <div class="col-sm-10">
+      <select
+        id="gender"
+        [(ngModel)]="employee.gender"
+        name="gender"
+        #gender="ngModel"
+        class="form-control"
+      >
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="role" class="col-sm-2 col-form-label">Role:</label>
+    <div class="col-sm-10">
+      <select
+        id="role"
+        [(ngModel)]="employee.role"
+        name="role"
+        #role="ngModel"
+        class="form-control"
+      >
+        <option value="Admin">Admin</option>
+        <option value="Employee">Employee</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="dob" class="col-sm-2 col-form-label">Date of Birth:</label>
+    <div class="col-sm-10">
+      <input
+        type="date"
+        id="dob"
+        [max]="maxDate"
+        [(ngModel)]="employee.dob"
+        name="dob"
+        #dob="ngModel"
+        class="form-control"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <label for="department" class="col-sm-2 col-form-label">Department:</label>
+    <div class="col-sm-10">
+      <select
+        id="department"
+        [(ngModel)]="employee.department.deptId"
+        name="department"
+        #name="ngModel"
+        (change)="updateDepartmentName()"
+        class="form-control"
+        required
+      >
+        <option value="" disabled selected>Select a department</option>
+        <option *ngFor="let dept of departments" [value]="dept.deptId">
+          {{ dept.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row mb-3">
+    <div class="col-sm-10 offset-sm-2">
+      <button
+        type="button"
+        class="btn btn-secondary me-2"
+        (click)="goToDashboard()"
+      >
+        Back to Dashboard
+      </button>
+      <button type="submit"  class="btn btn-primary" [disabled]="!myform.valid">Create Employee</button>
+    </div>
+  </div>
+</form>
+

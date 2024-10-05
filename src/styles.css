@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~node_modules/bootstrap/dist/css/bootstrap.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.hero-image {
+  position: relative;
+  text-align: center;
+  color: rgb(43, 10, 232);
+}
+
+.responsive-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the image covers the area */
+}
+
+.hero-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+}

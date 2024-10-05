@@ -1,0 +1,28 @@
+<h3>Find emp by Email</h3>
+  <input
+    type="email"
+    placeholder="Enter emp Email"
+    [(ngModel)]="searchEmail"
+    class="form-control"
+  />
+ <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employees | findbyemail:searchEmail">
+        <td>{{ emp.eid }}</td>
+        <td>{{ emp.ename }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.role }}</td>
+        <td>{{ emp.department.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+

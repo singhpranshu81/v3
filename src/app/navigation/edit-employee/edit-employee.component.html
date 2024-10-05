@@ -1,0 +1,99 @@
+<div class="container">
+    <h3>Edit Employee Details</h3>
+    <form (ngSubmit)="updateEmployee()">
+      <div class="form-group">
+        <label for="eid">Eid:</label>
+        <input
+          type="text"
+          id="eid"
+          class="form-control"
+          [(ngModel)]="employee.eid"
+          name="eid"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="ename">Name:</label>
+        <input
+          type="text"
+          id="ename"
+          class="form-control"
+          [(ngModel)]="employee.ename"
+          name="ename"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="employee.email"
+          name="email"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          [(ngModel)]="employee.password"
+          name="password"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select
+          id="gender"
+          class="form-control"
+          [(ngModel)]="employee.gender"
+          name="gender"
+        >
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input
+          type="date"
+          id="dob"
+          class="form-control"
+          [(ngModel)]="employee.dob"
+          name="dob"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="department">Department:</label>
+        <select
+          id="department"
+          class="form-control"
+          [(ngModel)]="employee.department.deptId"
+          name="department"
+        >
+          <option *ngFor="let dept of departments" [value]="dept.deptId">
+            {{ dept.name }}
+          </option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Update Employee</button>
+    </form>
+  </div>
+  
+  
+  
+  
+  
+  

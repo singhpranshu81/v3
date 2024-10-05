@@ -1,0 +1,75 @@
+
+<div class="dashboard-container">
+  <div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li *ngIf="isAdmin"><a routerLink="/create-emp">Create Employee</a></li>
+      <li *ngIf="isCurrentEmployee">
+        <a [routerLink]="['/edit-emp',currentEmployee.eid]">Edit Employee</a>
+      </li>
+      <li *ngIf="isAdmin">
+        <a routerLink="/find-emp-id">Find Employee by ID</a>
+      </li>
+      <li *ngIf="isAdmin">
+        <a routerLink="/find-emp-email">Find Employee by Email</a>
+      </li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="user-info">
+      <p>Email: {{ userEmail }}</p>
+      <p>Role: {{ userRole }}</p>
+    </div>
+    <button (click)="downloadPdf()">Download PDF</button>
+    <div *ngIf="isAdmin">
+      <h4>All Employees</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Emp Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Departmentname</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.eid }}</td>
+            <td>{{ employee.ename }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.role }}</td>
+            <td>{{ employee.department.name }}</td>
+            <td><button (click)="onDelete(employee)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="isCurrentEmployee">
+      <h4>Your Details</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ currentEmployee.eid }}</td>
+            <td>{{ currentEmployee.ename }}</td>
+            <td>{{ currentEmployee.email }}</td>
+            <td>{{ currentEmployee.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
